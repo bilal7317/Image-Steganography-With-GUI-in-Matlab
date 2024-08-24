@@ -1,0 +1,597 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Image</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-02-10"><meta name="DC.source" content="Image.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> varargout = Image(varargin)
+
+<span class="comment">% Varaible length output argument list</span>
+<span class="comment">% output variable in a function enabling you to return</span>
+<span class="comment">% any number of o/p arguments</span>
+
+
+<span class="comment">% Begin initialization code</span>
+gui_Singleton = 1;
+gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+                   <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+                   <span class="string">'gui_OpeningFcn'</span>, @Image_OpeningFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_OutputFcn'</span>,  @Image_OutputFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+                   <span class="string">'gui_Callback'</span>,   []);
+
+ <span class="comment">%nargin: No of function input arguments</span>
+<span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+<span class="keyword">end</span>
+
+<span class="comment">%nargout: No of function output arguments</span>
+
+<span class="keyword">if</span> nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">else</span>
+    gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">end</span>
+<span class="comment">% End initialization code</span>
+
+
+<span class="comment">% --- Executes just before Image is made visible.</span>
+<span class="keyword">function</span> Image_OpeningFcn(hObject, eventdata, handles, varargin)
+<span class="comment">% This function has no output args, see OutputFcn.</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+<span class="comment">% varargin   command line arguments to Image (see VARARGIN)</span>
+
+<span class="comment">% Choose default command line output for Image</span>
+handles.output = hObject;
+
+<span class="comment">% Update handles structure</span>
+guidata(hObject, handles);
+
+<span class="comment">% UIWAIT makes Image wait for user response (see UIRESUME)</span>
+<span class="comment">% uiwait(handles.figure1);</span>
+<span class="keyword">global</span> msg1
+<span class="keyword">global</span> msg2
+<span class="keyword">global</span> msg3
+<span class="keyword">global</span> msg4
+<span class="keyword">global</span> cvr
+
+<span class="comment">% --- Outputs from this function are returned to the command line.</span>
+<span class="keyword">function</span> varargout = Image_OutputFcn(hObject, eventdata, handles)
+<span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Get default command line output from handles structure</span>
+varargout{1} = handles.output;
+
+
+<span class="comment">% --- Executes on button press in ImportSecret.</span>
+<span class="keyword">function</span> ImportSecret_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to ImportSecret (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="keyword">global</span> msg1
+<span class="keyword">global</span> msg2
+<span class="keyword">global</span> msg3
+<span class="keyword">global</span> msg4
+
+
+msg1 = imread(<span class="string">'message1.bmp'</span>);
+axes(handles.axes3);
+imshow(msg1);
+msg1 = rgb2gray(msg1);
+msg1 = imresize(msg1, [512 512]);
+
+msg2 = imread(<span class="string">'message2.bmp'</span>);
+axes(handles.axes8);
+imshow(msg2);
+msg2 = rgb2gray(msg2);
+msg2 = imresize(msg2, [512 512]);
+
+msg3 = imread(<span class="string">'message3.bmp'</span>);
+axes(handles.axes7);
+imshow(msg3);
+msg3 = rgb2gray(msg3);
+msg3 = imresize(msg3, [512 512]);
+
+msg4 = imread(<span class="string">'message4.bmp'</span>);
+axes(handles.axes9);
+imshow(msg4);
+msg4 = rgb2gray(msg4);
+msg4 = imresize(msg4, [512 512]);
+
+
+<span class="comment">% --- Executes on button press in ImportCover.</span>
+<span class="keyword">function</span> ImportCover_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to ImportCover (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="keyword">global</span> cvr
+
+cvr = imread(<span class="string">'cover.bmp'</span>);
+cvr = rgb2gray(cvr);
+cvr = imresize(cvr, [1024 1024]);
+cvr = imnoise(cvr,<span class="string">'gaussian'</span>); <span class="comment">%adding gaussian noise</span>
+axes(handles.axes2);
+imshow(cvr);
+
+<span class="comment">% --- Executes on button press in Encrypt.</span>
+<span class="keyword">function</span> Encrypt_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to Encrypt (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="keyword">global</span> msg1
+<span class="keyword">global</span> msg2
+<span class="keyword">global</span> msg3
+<span class="keyword">global</span> msg4
+<span class="keyword">global</span> cvr
+
+
+cvr = imnoise(cvr,<span class="string">'gaussian'</span>); <span class="comment">%adding gaussian noise</span>
+
+
+msg = [msg1 msg2; msg3 msg4];
+
+m1 = size(cvr,1);<span class="comment">%height of cover image</span>
+n1 = size(cvr,2);<span class="comment">%width of cover image</span>
+m2 = size(msg,1);<span class="comment">%height of message image</span>
+n2 = size(msg,2);<span class="comment">%width of message image</span>
+
+<span class="comment">%extract upper 4 bitplanes of message</span>
+steg1 = msg;
+<span class="keyword">for</span> i = 1:m2
+ <span class="keyword">for</span> j = 1:n2
+ msg_b7(i,j) = bitand(steg1(i,j),128); <span class="comment">%msb of message</span>
+ msg_b6(i,j) = bitand(steg1(i,j),64);
+ msg_b5(i,j) = bitand(steg1(i,j),32);
+ msg_b4(i,j) = bitand(steg1(i,j),16);
+ <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">%extract 8 bitplanes of cover image</span>
+steg2 = cvr;
+<span class="keyword">for</span> i = 1:m2
+ <span class="keyword">for</span> j = 1:n2
+ cvr_b7(i,j) = bitand(steg2(i,j),128); <span class="comment">%msb of coverimage</span>
+ cvr_b6(i,j) = bitand(steg2(i,j),64);
+ cvr_b5(i,j) = bitand(steg2(i,j),32);
+ cvr_b4(i,j) = bitand(steg2(i,j),16);
+ cvr_b3(i,j) = bitand(steg2(i,j),8);
+ cvr_b2(i,j) = bitand(steg2(i,j),4);
+ cvr_b1(i,j) = bitand(steg2(i,j),2);
+ cvr_b0(i,j) = bitand(steg2(i,j),1); <span class="comment">%lsb of coverimage</span>
+ <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">%use last 4 layers to store message image</span>
+steg = zeros(size(cvr));<span class="comment">%consider new blankimage</span>
+
+<span class="comment">%msb of steg</span>
+steg = bitset(steg,8,cvr_b7); <span class="comment">%msb of cover</span>
+steg = bitset(steg,7,cvr_b6);
+steg = bitset(steg,6,cvr_b5);
+steg = bitset(steg,5,cvr_b4); <span class="comment">%bit-plane 4 of cover</span>
+steg = bitset(steg,4,msg_b7); <span class="comment">%msb of message</span>
+steg = bitset(steg,3,msg_b6);
+steg = bitset(steg,2,msg_b5);
+<span class="comment">%lsb of steg</span>
+steg = bitset(steg,1,msg_b4); <span class="comment">%lsb of message</span>
+
+steg = uint8(steg);
+
+axes(handles.axes14);
+imshow(steg);
+imwrite(steg,<span class="string">'steganographic.bmp'</span>);
+
+<span class="comment">% --- Executes on button press in Decrypt.</span>
+<span class="keyword">function</span> Decrypt_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to Decrypt (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+img = imread(<span class="string">'steganographic.bmp'</span>);
+
+[m,n]=size(img);
+
+<span class="keyword">for</span> i=1:m
+ <span class="keyword">for</span> j=1:n
+ img_b7(i,j)=bitand(img(i,j),128); <span class="comment">%msb of image</span>
+ img_b6(i,j)=bitand(img(i,j),64);
+ img_b5(i,j)=bitand(img(i,j),32);
+ img_b4(i,j)=bitand(img(i,j),16);
+ img_b3(i,j)=bitand(img(i,j),8);
+ img_b2(i,j)=bitand(img(i,j),4);
+ img_b1(i,j)=bitand(img(i,j),2);
+ img_b0(i,j)=bitand(img(i,j),1); <span class="comment">%lsb of image</span>
+ <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+message = img_b0*16 + img_b1*32 + img_b2*64 + img_b3*128;
+
+m1 = message(1:512,1:512);
+axes(handles.axes12);
+imshow(m1);
+imwrite(m1,<span class="string">'retrieved_image_1.bmp'</span>);
+
+m2 = message(1:512,512:end);
+axes(handles.axes10);
+imshow(m2);
+imwrite(m2,<span class="string">'retrieved_image_2.bmp'</span>);
+
+m3 = message(512:end,1:512);
+axes(handles.axes13);
+imshow(m3);
+imwrite(m3,<span class="string">'retrieved_image_3.bmp'</span>);
+
+m4 = message(512:end,512:end);
+axes(handles.axes11);
+imshow(m4);
+imwrite(m4,<span class="string">'retrieved_image_4.bmp'</span>);
+
+
+<span class="comment">% --- Executes on button press in RESET.</span>
+<span class="keyword">function</span> RESET_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to RESET (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+axes(handles.axes10);
+cla();
+axes(handles.axes11);
+cla();
+axes(handles.axes12);
+cla();
+axes(handles.axes13);
+cla();
+axes(handles.axes14);
+cla();
+axes(handles.axes2);
+cla();
+axes(handles.axes3);
+cla();
+axes(handles.axes7);
+cla();
+axes(handles.axes8);
+cla();
+axes(handles.axes9);
+cla();
+
+<span class="comment">% --- Executes on button press in EXIT.</span>
+<span class="keyword">function</span> EXIT_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to EXIT (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+close
+</pre><img vspace="5" hspace="5" src="Image_01.png" style="width:1010px;height:663px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function varargout = Image(varargin)
+
+% Varaible length output argument list
+% output variable in a function enabling you to return
+% any number of o/p arguments
+
+
+% Begin initialization code
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @Image_OpeningFcn, ...
+                   'gui_OutputFcn',  @Image_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+               
+ %nargin: No of function input arguments
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+%nargout: No of function output arguments
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code 
+
+
+% REPLACE_WITH_DASH_DASH- Executes just before Image is made visible.
+function Image_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to Image (see VARARGIN)
+
+% Choose default command line output for Image
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes Image wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+global msg1
+global msg2
+global msg3
+global msg4
+global cvr
+
+% REPLACE_WITH_DASH_DASH- Outputs from this function are returned to the command line.
+function varargout = Image_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in ImportSecret.
+function ImportSecret_Callback(hObject, eventdata, handles)
+% hObject    handle to ImportSecret (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global msg1
+global msg2
+global msg3
+global msg4
+
+
+msg1 = imread('message1.bmp');
+axes(handles.axes3);
+imshow(msg1);
+msg1 = rgb2gray(msg1);
+msg1 = imresize(msg1, [512 512]);
+
+msg2 = imread('message2.bmp');
+axes(handles.axes8);
+imshow(msg2);
+msg2 = rgb2gray(msg2);
+msg2 = imresize(msg2, [512 512]);
+
+msg3 = imread('message3.bmp');
+axes(handles.axes7);
+imshow(msg3);
+msg3 = rgb2gray(msg3);
+msg3 = imresize(msg3, [512 512]);
+
+msg4 = imread('message4.bmp');
+axes(handles.axes9);
+imshow(msg4);
+msg4 = rgb2gray(msg4);
+msg4 = imresize(msg4, [512 512]);
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in ImportCover.
+function ImportCover_Callback(hObject, eventdata, handles)
+% hObject    handle to ImportCover (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global cvr
+
+cvr = imread('cover.bmp');
+cvr = rgb2gray(cvr);
+cvr = imresize(cvr, [1024 1024]);
+cvr = imnoise(cvr,'gaussian'); %adding gaussian noise
+axes(handles.axes2);
+imshow(cvr);
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in Encrypt.
+function Encrypt_Callback(hObject, eventdata, handles)
+% hObject    handle to Encrypt (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global msg1
+global msg2
+global msg3
+global msg4
+global cvr
+
+
+cvr = imnoise(cvr,'gaussian'); %adding gaussian noise
+
+
+msg = [msg1 msg2; msg3 msg4];
+
+m1 = size(cvr,1);%height of cover image
+n1 = size(cvr,2);%width of cover image
+m2 = size(msg,1);%height of message image
+n2 = size(msg,2);%width of message image
+
+%extract upper 4 bitplanes of message
+steg1 = msg;
+for i = 1:m2
+ for j = 1:n2
+ msg_b7(i,j) = bitand(steg1(i,j),128); %msb of message
+ msg_b6(i,j) = bitand(steg1(i,j),64);                  
+ msg_b5(i,j) = bitand(steg1(i,j),32);                  
+ msg_b4(i,j) = bitand(steg1(i,j),16);                  
+ end
+end
+
+%extract 8 bitplanes of cover image
+steg2 = cvr;
+for i = 1:m2
+ for j = 1:n2
+ cvr_b7(i,j) = bitand(steg2(i,j),128); %msb of coverimage
+ cvr_b6(i,j) = bitand(steg2(i,j),64);
+ cvr_b5(i,j) = bitand(steg2(i,j),32);
+ cvr_b4(i,j) = bitand(steg2(i,j),16);
+ cvr_b3(i,j) = bitand(steg2(i,j),8);
+ cvr_b2(i,j) = bitand(steg2(i,j),4);
+ cvr_b1(i,j) = bitand(steg2(i,j),2);
+ cvr_b0(i,j) = bitand(steg2(i,j),1); %lsb of coverimage
+ end
+end
+
+%use last 4 layers to store message image
+steg = zeros(size(cvr));%consider new blankimage
+
+%msb of steg
+steg = bitset(steg,8,cvr_b7); %msb of cover
+steg = bitset(steg,7,cvr_b6);
+steg = bitset(steg,6,cvr_b5);
+steg = bitset(steg,5,cvr_b4); %bit-plane 4 of cover
+steg = bitset(steg,4,msg_b7); %msb of message
+steg = bitset(steg,3,msg_b6);
+steg = bitset(steg,2,msg_b5);
+%lsb of steg
+steg = bitset(steg,1,msg_b4); %lsb of message
+
+steg = uint8(steg);
+
+axes(handles.axes14);
+imshow(steg);
+imwrite(steg,'steganographic.bmp');
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in Decrypt.
+function Decrypt_Callback(hObject, eventdata, handles)
+% hObject    handle to Decrypt (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+img = imread('steganographic.bmp');
+
+[m,n]=size(img); 
+
+for i=1:m
+ for j=1:n
+ img_b7(i,j)=bitand(img(i,j),128); %msb of image
+ img_b6(i,j)=bitand(img(i,j),64);
+ img_b5(i,j)=bitand(img(i,j),32);
+ img_b4(i,j)=bitand(img(i,j),16);
+ img_b3(i,j)=bitand(img(i,j),8);
+ img_b2(i,j)=bitand(img(i,j),4);
+ img_b1(i,j)=bitand(img(i,j),2);
+ img_b0(i,j)=bitand(img(i,j),1); %lsb of image
+ end
+end
+
+message = img_b0*16 + img_b1*32 + img_b2*64 + img_b3*128;
+
+m1 = message(1:512,1:512);
+axes(handles.axes12);
+imshow(m1);
+imwrite(m1,'retrieved_image_1.bmp');
+
+m2 = message(1:512,512:end);
+axes(handles.axes10);
+imshow(m2);
+imwrite(m2,'retrieved_image_2.bmp');
+
+m3 = message(512:end,1:512);
+axes(handles.axes13);
+imshow(m3);
+imwrite(m3,'retrieved_image_3.bmp');
+
+m4 = message(512:end,512:end);
+axes(handles.axes11);
+imshow(m4);
+imwrite(m4,'retrieved_image_4.bmp');
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in RESET.
+function RESET_Callback(hObject, eventdata, handles)
+% hObject    handle to RESET (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+axes(handles.axes10);
+cla();
+axes(handles.axes11);
+cla();
+axes(handles.axes12);
+cla();
+axes(handles.axes13);
+cla();
+axes(handles.axes14);
+cla();
+axes(handles.axes2);
+cla();
+axes(handles.axes3);
+cla();
+axes(handles.axes7);
+cla();
+axes(handles.axes8);
+cla();
+axes(handles.axes9);
+cla();
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in EXIT.
+function EXIT_Callback(hObject, eventdata, handles)
+% hObject    handle to EXIT (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,137 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration file="C:\Users\muham\OneDrive\Desktop\Signals Project\signals_final\gui_global_exe\Steganographic_Tool.prj" location="C:\Users\muham\OneDrive\Desktop\Signals Project\signals_final\gui_global_exe" name="Steganographic_Tool" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>Steganographic_Tool</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.0</param.version>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.summary />
+    <param.description />
+    <param.screenshot>${PROJECT_ROOT}\acastro_170629_1777_0008_v2.0.jpg</param.screenshot>
+    <param.guid />
+    <param.installpath.string>\Steganographic_Tool\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.target.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\Steganographic_Tool\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\Steganographic_Tool\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\Steganographic_Tool\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\Steganographic_Tool</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.version />
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.summary />
+      <param.description />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.logo />
+      <param.target.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\Image.m</file>
+    </fileset.main>
+    <fileset.resources />
+    <fileset.package />
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\cover.bmp</file>
+      <file>${PROJECT_ROOT}\message1.bmp</file>
+      <file>${PROJECT_ROOT}\message2.bmp</file>
+      <file>${PROJECT_ROOT}\message3.bmp</file>
+      <file>${PROJECT_ROOT}\message4.bmp</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\Steganographic_Tool\for_testing" name="readme.txt" optional="true">C:\Users\muham\OneDrive\Desktop\Signals Project\signals_final\gui_global_exe\Steganographic_Tool\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\Steganographic_Tool\for_testing" name="Steganographic_Tool.exe" optional="false">C:\Users\muham\OneDrive\Desktop\Signals Project\signals_final\gui_global_exe\Steganographic_Tool\for_testing\Steganographic_Tool.exe</file>
+      <file location="${PROJECT_ROOT}\Steganographic_Tool\for_testing" name="splash.png" optional="false">C:\Users\muham\OneDrive\Desktop\Signals Project\signals_final\gui_global_exe\Steganographic_Tool\for_testing\splash.png</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>D:\Software\Matlab 2017</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="polyspacebugfinder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <polyspacebugfinder>
+          <enabled>true</enabled>
+        </polyspacebugfinder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
